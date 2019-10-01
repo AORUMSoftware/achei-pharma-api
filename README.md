@@ -9,8 +9,6 @@ Then we need to run the following command inside the project folder:
 npm i
 ```
 
-If we uses we will need to install [https://www.docker.com/](Docker) and [https://docs.docker.com/compose/](Docker Compose)
-
 ### Development
 
 In development mode this command will run the Lint then it will listen in port *80*.
