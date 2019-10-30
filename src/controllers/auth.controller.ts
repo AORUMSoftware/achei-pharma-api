@@ -21,7 +21,7 @@ class AuthController extends Controller {
             .then((user) => {
 
                 const access_token = jwt.sign(user, apiToken, {
-                    expiresIn: 3000 // in seconds
+                    expiresIn: 30000 // in seconds
                 });
 
                 res.status(200).send({ auth: true, access_token, "current_time": new Date() });
