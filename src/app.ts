@@ -2,22 +2,19 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import AuthMiddleware from './middlewares/auth.middleware';
 import authRoute from './routes/auth.route';
+import mainRoute from './routes/main.route';
 
 //
 const app = require('express')();
-const customerBaseRoute = '/api/customer/';
-const providerBaseRoute = '/api/provider/';
+const baseRoute = '/api/';
 
 // Middlewares Setup
 app.use(bodyParser.urlencoded({"extended": true}));
 app.use(bodyParser.json());
 app.use(morgan('short'));
 
-// Registering base routes for providers
-app.use(`${providerBaseRoute}auth`, [authRoute]);
-// app.use(`${baseRoute}auth`, [AuthMiddleware.verifyToken, softwareRoute]);
-
-// Registering base routes for customers
-// app.use(`${providerBaseRoute}auth`, [authRoute]);
+// Registering base routes
+app.use(`${baseRoute}auth`, [authRoute]);
+app.use(`${baseRoute}main`, [mainRoute]);
 
 export default app;
