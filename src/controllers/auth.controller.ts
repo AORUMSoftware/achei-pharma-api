@@ -20,12 +20,20 @@ class AuthController extends Controller {
         authService.login({email,password})
             .then((user) => {
 
-                const access_token = jwt.sign(user, apiToken, {
-                    expiresIn: 30000 // in seconds
-                });
+                if (user) {
+                    
+                    const access_token = jwt.sign(user, apiToken, {
+                        expiresIn: 30000 // in seconds
+                    });
 
-                res.status(200).send({ auth: true, access_token, "current_time": new Date() });
-            
+                    res.status(200).send({ auth: true, access_token, "current_time": new Date() });
+                
+                } else {
+                    
+                    res.status(200).send({ auth: false, "access_token": null, "current_time": new Date() });
+                
+                }
+
             })
             .catch((error) => res.status(400).send(this.error(error)));
 
